@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="hero is-link is-spaced has-background-primary-dark">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h1 class="title is-size-1">Veicular</h1>
+                    <p class="title is-size-1">Estacionamento de veiculos</p>
+                    <p class="subtitle is-size-4">Sistema para estacionamento de veiculos</p>
+                </div>
+            </div>
+    </section>
+
+    {% block registros %}
+        {% include "registros.html" %}
+    {% endblock %}
+
+{% endblock %}
