@@ -6,5 +6,5 @@ from clientepj.models import Clientepj
 
 @admin.register(Clientepj)
 class ClientepjAdmin(admin.ModelAdmin):
-    fields = ('nome', 'endereco', 'cpf')
-    list_display = ('nome', 'datanascimento',)
+    fields = ('nome', 'datanascimento', 'cnpj')
+    list_display = ('nome', 'datanascimento')

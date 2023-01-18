@@ -10,7 +10,7 @@ class Pessoa(models.Model):
                          null=True, blank=True)
 
     class Meta:
-        abstract = True
+        verbose_name = "Pessoa"
 
     def __str__(self):
         return self.nome
