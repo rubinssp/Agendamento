@@ -6,9 +6,10 @@ from funcionario.models import Funcionario
 
 @admin.register(Funcionario)
 class FuncionarioAdmin(admin.ModelAdmin):
-    fields = ('nome', 'datanascimento','foto', 'fotografia')
+    fields = ('nome', 'datanascimento', 'foto', 'fotografia')
     list_display = ('nome', 'datanascimento')
     readonly_fields = ['fotografia']
+    search_fields = ('nome', 'cpf')
 
     def fotografia(self, obj):
         if obj.foto:

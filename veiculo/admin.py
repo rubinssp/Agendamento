@@ -6,3 +6,4 @@ from .models import Veiculo
 @admin.register(Veiculo)
 class VeiculoAdmin(admin.ModelAdmin):
     list_display = ('marca', 'modelo', 'cor', 'placa')
+    search_fields = ('modelo', 'placa')

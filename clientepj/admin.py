@@ -8,3 +8,4 @@ from clientepj.models import Clientepj
 class ClientepjAdmin(admin.ModelAdmin):
     fields = ('nome', 'datanascimento', 'cnpj')
     list_display = ('nome', 'datanascimento')
+    search_fields = ('nome', 'cnpj')
