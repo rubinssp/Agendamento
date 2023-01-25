@@ -25,4 +25,8 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('clientepf.urls')),
     path('', include('clientepj.urls')),
+    path('', include('funcionario.urls')),
+    path('', include('vaga.urls')),
+    path('', include('veiculo.urls')),
+    path('', include('movimentacao.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

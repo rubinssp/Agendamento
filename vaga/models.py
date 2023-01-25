@@ -14,6 +14,7 @@ class Vaga(models.Model):
     class Meta:
         verbose_name = 'Vaga'
         verbose_name_plural = 'Vagas'
+        ordering = ['numero', ]
 
     def __str__(self):
         return self.numero

@@ -19,6 +19,7 @@ class Movimentacao(models.Model):
     class Meta:
         verbose_name = 'Movimentacao'
         verbose_name_plural = 'Movimentacoes'
+        ordering = ['entrada', ]
 
     def __str__(self):
         return f'Vaga: {self.vaga} - Funncionário: {self.funcionario}'

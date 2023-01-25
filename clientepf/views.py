@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-
+from django.core.paginator import Paginator
 from clientepf.models import Clientepf
 
 class ClientespfView(ListView):
@@ -11,4 +11,7 @@ class ClientespfView(ListView):
         qs = super(ClientespfView, self).get_queryset(*args, **kwargs)
         if buscar:
             qs = qs.filter(nome__icontains=buscar)
-        return qs
+
+        paginator = Paginator(qs, 1)
+        listagem = paginator.get_page(self.request.GET.get('page'))
+        return listagem

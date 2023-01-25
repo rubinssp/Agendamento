@@ -5,10 +5,10 @@
     <div class="container">
         <form action="" method="GET">
             <div class="field is-grouped is-flex is align-items-center is-flex-wrap-wrap">
-                <label class="label p-2 mt-2">Nome do cliente:</label>
+                <label class="label p-2 mt-2">Numero da Vaga:</label>
                 <div class="control is-expanded">
                     <input class="input" type="text" name="buscar" value="{{ request.GET.buscar }}"
-                           placeholder="Digite o nome do cliente">
+                           placeholder="Digite o numero da vaga">
                 </div>
                 <div class="control">
                     <button type="submit " class="button is-link">
@@ -18,29 +18,29 @@
             </div>
         </form>
         {% if object_list %}
-        <div style="text-align: center;"><h1 class="subtitle is-size-4">Clientes PJ Cadastrados</h1></div>
+        <div style="text-align: center;"><h1 class="subtitle is-size-4">Vagas Cadastradas</h1></div>
         <div class="table">
             <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                 <thead>
                 <tr>
-                    <th class="has-text-centered">Nome</th>
-                    <th class="has-text-centered">Endereço</th>
-                    <th class="has-text-centered">CNPJ</th>
+                    <th class="has-text-centered">Numero</th>
+                    <th class="has-text-centered">Status</th>
+                    <th class="has-text-centered">Preço</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for clientepj in object_list %}
+                {% for vagas in object_list %}
                 <tr>
                     <td><a href="" data-toggle="modal" class="modal-target"
-                           data-bulma-modal="modal{{clientepj.id}}" id="modal{{clientepf.id}}">
-                        {{ clientepj.nome }} </a></td>
-                    <td> {{ clientepj.endereco }}</td>
-                    <td> {{ clientepj.cnpj }}</td>
-                    <div class="modal" id="modal{{ clientepj.id }}">
+                           data-bulma-modal="modal{{vaga.id}}" id="modal{{vaga.id}}">
+                        {{ vaga.numero }} </a></td>
+                    <td> {{ vaga.situacao}}</td>
+                    <td> {{ vaga.preco }}</td>
+                    <div class="modal" id="modal{{ clientepf.id }}">
                         <div class="modal-background"></div>
                         <div class="modal-card">
                             <header class="modal-card-head">
-                                <p class="modal-card-title">Cliente: {{ clientepj.nome }}</p>
+                                <p class="modal-card-title">Vaga: {{ vaga.numero }}</p>
                                 <button class="delete" aria-label="close" data-bulma-modal="close"
                                         id="btnClose"></button>
                             </header>
@@ -52,7 +52,7 @@
             </table>
         </div>
         {% else %}
-        <h2>Nao existem clientes cadastrados!</h2>
+        <h2>Nao existem vagas cadastradas!</h2>
         {% endif %}
     </div>
     <div class="mt-3" style="text-align: center">

@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-
+from django.core.paginator import Paginator
 from clientepj.models import Clientepj
 
 class ClientespjView(ListView):
@@ -11,4 +11,7 @@ class ClientespjView(ListView):
         qs = super(ClientespjView, self).get_queryset(*args, **kwargs)
         if buscar:
             qs = qs.filter(nome__icontains=buscar)
-        return qs
+
+        paginator = Paginator(qs, 1)
+        listagem = paginator.get_page(self.request.GET.get('page'))
+        return listagem
