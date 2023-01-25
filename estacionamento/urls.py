@@ -21,6 +21,8 @@ from django.conf.urls.static import static
 admin.site.site_header = "Estacionamento"
 admin.site.index_title = "Veicular - Estacionamento de Veículos"
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('', include('home.urls')),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('admin/', admin.site.urls),
+    path('', include('home.urls')),
+    path('', include('clientepf.urls')),
+    path('', include('clientepj.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

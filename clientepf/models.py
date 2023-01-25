@@ -6,7 +6,7 @@ class Clientepf(Pessoa):
 
     class Meta:
         verbose_name = 'Clientepf'
-        verbose_name = 'Clentespf'
+        verbose_name = 'Clientespf'
 
     def __str__(self):
         return super().nome

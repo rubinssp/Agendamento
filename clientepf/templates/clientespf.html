@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <section class="section has-background-link-light">
+        <div class="container">
+            <form action="" method="GET">
+                <div class="field is-grouped is-flex is align-items-center is-flex-wrap-wrap">
+                    <label class="label p-2 mt-2">Nome do cliente:</label>
+                    <div class="control is-expanded">
+                        <input class="input" type="text" name="buscar" value="{{ request.GET.buscar }}"
+                        placeholder="Digite o nome do cliente">
+                    </div>
+                    <div class="control">
+                        <button type="submit "class="button is-link">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+            </form>
+{% if object_list %}
+            <div style="text-align: center;"> <h1 class="subtitle is-size-4">Clientes Cadastrados</h1></div>
+            <div class="table">
+                <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th class="has-text-centered">Nome</th>
+                            <th class="has-text-centered">Endereço</th>
+                            <th class="has-text-centered">CPF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for clientepf in object_list %}
+                            <tr>
+                                <td><a href=""data-toggle="modal" class="modal-target"
+                                        data-bulma-modal="modal{{clientepf.id}}" id="modal{{clientepf.id}}">
+                                    {{ clientepf.nome }} </a></td>
+                                <td> {{ clientepf.endereco }} </td>
+                                <td> {{ clientepf.cpf }} </td>
+                                <div class="modal" id="modal{{ clientepf.id }}">
+                                    <div class="modal-background"></div>
+                                    <div class="modal-card">
+                                        <header class="modal-card-head">
+                                            <p class="modal-card-title">Cliente: {{ clientepf.nome }}</p>
+                                            <button class="delete" aria-label="close" data-bulma-modal="close"
+                                            id="btnClose"></button>
+                                        </header>
+                                    </div>
+                                </div>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <h2>Nao existem clientes cadastrados!</h2>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
