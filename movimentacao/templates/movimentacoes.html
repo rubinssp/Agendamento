@@ -4,14 +4,21 @@
 <section class="section has-background-link-light">
     <div class="container">
         <form action="" method="GET">
-            <div class="field is-grouped is-flex is align-items-center is-flex-wrap-wrap">
-                <label class="label p-2 mt-2">Hora da entrada ou hora de saida do estacionamento:</label>
+            <div class="field is-grouped is-flex is-align-items center is-flex-wrap-wrap">
+                <label class="label p-2 mt-2">{{ form.funcionario.label }}</label>
                 <div class="control is-expanded">
-                    <input class="input" type="text" name="buscar" value="{{ request.GET.buscar }}"
-                           placeholder="Digite a hora de entrada ou hora de saida do estacionamento">
+                    {{ form.funcionario }}
+                </div>
+                <label class="label p-2 mt-2">{{ form.vaga.label }}</label>
+                <div class="control is-expanded">
+                    {{ form.vaga }}
+                </div>
+                <label class="label p-2 mt-2">{{ form.situacao.label }}</label>
+                <div class="control is-expanded">
+                    {{ form.situacao }}
                 </div>
                 <div class="control">
-                    <button type="submit " class="button is-link">
+                    <button type="submit" class="button is-link">
                         Buscar
                     </button>
                 </div>
@@ -28,20 +35,20 @@
                     <th class="has-text-centered">Valor Pago</th>
                     <th class="has-text-centered">Tempo</th>
                     <th class="has-text-centered">Vaga</th>
-                    <th class="has-text-centered"> Funcionario</th>
+                    <th class="has-text-centered">Funcionário</th>
+                    <th class="has-text-centered">Situacão</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for movimentacao in object_list %}
                 <tr>
-                    <td><a href="" data-toggle="modal" class="modal-target"
-                           data-bulma-modal="modal{{movimentacao.id}}" id="modal{{movimentacao.id}}">
-                        {{ movimentacao.entrada }} </a></td>
+                    <td> {{ movimentacao.entrada }}</td>
                     <td> {{ movimentacao.saida }}</td>
                     <td> {{ movimentacao.valor_pago }}</td>
                     <td> {{ movimentacao.tempo }}</td>
                     <td> {{ movimentacao.vaga }}</td>
                     <td> {{ movimentacao.funcionario }}</td>
+                    <td> {{ movimentacao.get_situacao_display }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
