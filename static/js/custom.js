@@ -22,3 +22,14 @@ window.onclick = function(event) {
 		});	 	
 	}
 };
+
+function geraPdf(imprimir, form){
+    var formulario = document.getElementById(form);
+    document.getElementById('imprimir').value = immprimir;
+    if (imprimir == ''pdf){
+        formulario.setAttibute("target", "blank");
+    } else {
+        formulario.setAttribute("target", "self");
+    }
+    formulario.submit();
+};

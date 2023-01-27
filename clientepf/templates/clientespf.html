@@ -3,7 +3,8 @@
 {% block content %}
 <section class="section has-background-link-light">
     <div class="container">
-        <form action="" method="GET">
+        <form id= "form ListaClientespf" action="" method="GET">
+            <input type="hidden" name="imprimir" id="imprimir" value="">
             <div class="field is-grouped is-flex is align-items-center is-flex-wrap-wrap">
                 <label class="label p-2 mt-2">Nome do cliente:</label>
                 <div class="control is-expanded">
@@ -11,10 +12,17 @@
                            placeholder="Digite o nome do cliente">
                 </div>
                 <div class="control">
-                    <button type="submit " class="button is-link">
+                    <button type="submit " class="button is-link" onclick="gerapdf('', 'formListaClientespf');">
                         Buscar
                     </button>
                 </div>
+                {% if object_list %}
+                    <div class="control">
+                        <button type="button" class="button is-link" onclick="gerapdf('pdf', 'formListaClientespf');">
+                            Imprimir
+                        </button>
+                    </div>
+                {% endif %}
             </div>
         </form>
         {% if object_list %}
