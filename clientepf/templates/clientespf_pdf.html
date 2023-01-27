@@ -8,7 +8,7 @@
 
 <body>
     <div class="container">
-        <h1 class="title has-text-centered has-text-weight-bold">Cadastro de Clientes Pessoa Fisica</h1>
+        <h1 class="title has-text-centered has-text-weight-bold">Sistema de Estacionamento</h1>
     </div>
 <section class="section has-background-link-light">
     {% if object_list %}
@@ -18,16 +18,16 @@
             <thead>
             <tr>
                 <th class="has-text-centered">Nome</th>
-                <th class="has-text-centered">Data de Nascimento</th>
+                <th class="has-text-centered">Endereço</th>
                 <th class="has-text-centered">CPF</th>
             </tr>
             </thead>
             <tbody>
-            {% for cliente in object_list%}
+            {% for clientepf in object_list%}
             <tr>
-                <td> {{ cliente.nome }}</td>
-                <td> {{ cliente.datadenascimento }}</td>
-                <td> {{ cliente.cpf }}</td>
+                <td> {{ clientepf.nome }}</td>
+                <td> {{ clientepf.endereco }}</td>
+                <td> {{ clientepf.cpf }}</td>
             </tr>
             {% endfor %}
             </tbody>

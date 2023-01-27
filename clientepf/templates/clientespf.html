@@ -3,7 +3,7 @@
 {% block content %}
 <section class="section has-background-link-light">
     <div class="container">
-        <form id= "form ListaClientespf" action="" method="GET">
+        <form id="form ListaClientespf" action="" method="GET">
             <input type="hidden" name="imprimir" id="imprimir" value="">
             <div class="field is-grouped is-flex is align-items-center is-flex-wrap-wrap">
                 <label class="label p-2 mt-2">Nome do cliente:</label>
@@ -12,16 +12,16 @@
                            placeholder="Digite o nome do cliente">
                 </div>
                 <div class="control">
-                    <button type="submit " class="button is-link" onclick="gerapdf('', 'formListaClientespf');">
+                    <button type="button" class="button is-link" onclick="geraPdf('', 'formListaClientespf');">
                         Buscar
                     </button>
                 </div>
                 {% if object_list %}
-                    <div class="control">
-                        <button type="button" class="button is-link" onclick="gerapdf('pdf', 'formListaClientespf');">
-                            Imprimir
-                        </button>
-                    </div>
+                <div class="control">
+                    <button type="button" class="button is-link" onclick="geraPdf('pdf', 'formListaClientespf');">
+                        Imprimir
+                    </button>
+                </div>
                 {% endif %}
             </div>
         </form>
@@ -41,7 +41,7 @@
                 <tr>
                     <td><a href="" data-toggle="modal" class="modal-target"
                            data-bulma-modal="modal{{clientepf.id}}" id="modal{{clientepf.id}}">
-                        {{ clientepf.nome }} </a></td>
+                         {{ clientepf.nome }} </a></td>
                     <td> {{ clientepf.endereco }}</td>
                     <td> {{ clientepf.cpf }}</td>
                     <div class="modal" id="modal{{ clientepf.id }}">

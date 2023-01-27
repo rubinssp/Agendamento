@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+
+{% block head %}
+    {% include "head.html" %}
+{% endblock %}
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered has-text-weight-bold">Cadastro de Movimentacoes</h1>
+        </div>
+    </section>
+    <section class="section has-background-link-light">
+        {% if object_list %}
+        <div style="text-align: center;"><h1 class="subtitle is-size-4">Movimentacoes</h1></div>
+        <div class="table">
+            <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th class="has-text-centered">Entrada</th>
+                        <th class="has-text-centered">Saida</th>
+                        <th class="has-text-centered">Valor Pago</th>
+                        <th class="has-text-centered">Veiculo</th>
+                        <th class="has-text-centered">Funcionario</th>
+                        <th class="has-text-centered">Situação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movimentacao in object_list%}
+                    <tr>
+                        <td> {{movimentacao.entrada}} </td>
+                        <td> {{movimentacao.saida}} </td>
+                        <td> {{movimentacao.valorpago}} </td>
+                        <td> {{movimentacao.veiculo}} </td>
+                        <td> {{movimentacao.funcionario}} </td>
+                        <td> {{movimentacao.get_situacao_display}} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <h2>Nao existem movimentaçoes cadastrados</h2>
+        {% endif %}
+    </section>
+</body>
+</html>

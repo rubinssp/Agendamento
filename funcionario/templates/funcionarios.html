@@ -3,7 +3,8 @@
 {% block content %}
 <section class="section has-background-link-light">
     <div class="container">
-        <form action="" method="GET">
+        <form id="form ListaClientespf" action="" method="GET">
+            <input type="hidden" name="imprimir" id="imprimir" value="">
             <div class="field is-grouped is-flex is align-items-center is-flex-wrap-wrap">
                 <label class="label p-2 mt-2">Nome do funcionário:</label>
                 <div class="control is-expanded">
@@ -11,10 +12,17 @@
                            placeholder="Digite o nome do funcionário">
                 </div>
                 <div class="control">
-                    <button type="submit " class="button is-link">
+                    <button type="button" class="button is-link" onclick="geraPdf('', 'formListaFuncionariso');">
                         Buscar
                     </button>
                 </div>
+                {% if object_list %}
+                <div class="control">
+                    <button type="button" class="button is-link" onclick="geraPdf('pdf', 'formListaFuncionarios');">
+                        Imprimir
+                    </button>
+                </div>
+                {% endif %}
             </div>
         </form>
         {% if object_list %}
@@ -38,7 +46,7 @@
                         <div class="modal-background"></div>
                         <div class="modal-card">
                             <header class="modal-card-head">
-                                <p class="modal-card-title">Cliente: {{ clientepf.nome }}</p>
+                                <p class="modal-card-title">Funcionario: {{ funcionario.nome }}</p>
                                 <button class="delete" aria-label="close" data-bulma-modal="close"
                                         id="btnClose"></button>
                             </header>

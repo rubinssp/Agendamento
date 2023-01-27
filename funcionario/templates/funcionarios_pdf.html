@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+
+{% block head %}
+    {% include "head.html" %}
+{% endblock %}
+
+<body>
+    <div class="container">
+        <h1 class="title has-text-centered has-text-weight-bold">Sistema de Estacionamento</h1>
+    </div>
+<section class="section has-background-link-light">
+    {% if object_list %}
+    <div style="text-align: center;"><h1 class="subtitle is-size-4">Funcionários Cadastrados</h1></div>
+    <div class="table">
+        <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+            <tr>
+                <th class="has-text-centered">Nome</th>
+                <th class="has-text-centered">CPF</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for funcionario in object_list%}
+            <tr>
+                <td> {{ funcionario.nome }}</td>
+                <td> {{ funcionario.cpf }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <h2>Nao existem funcionários cadastrados</h2>
+    {% endif %}
+</section>
+</body>
+</html>

@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 from django.core.paginator import Paginator
-from clientepf.models import Clientepf
+from .models import Clientepf
 from home.utils import HtmlToPdf
 
 class ClientespfView(ListView):
