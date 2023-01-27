@@ -3,7 +3,7 @@
 {% block content %}
 <section class="section has-background-link-light">
     <div class="container">
-        <form id="form ListaClientespf" action="" method="GET">
+        <form id="form ListaFuncinarios" action="" method="GET">
             <input type="hidden" name="imprimir" id="imprimir" value="">
             <div class="field is-grouped is-flex is align-items-center is-flex-wrap-wrap">
                 <label class="label p-2 mt-2">Nome do funcionário:</label>
@@ -33,6 +33,7 @@
                 <tr>
                     <th class="has-text-centered">Nome</th>
                     <th class="has-text-centered">CPF</th>
+                    <th class="has-text-centered" style="width: 100px;">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,7 +43,19 @@
                            data-bulma-modal="modal{{funcionario.id}}" id="modal{{funcionario.id}}">
                         {{ funcionario.nome }} </a></td>
                     <td> {{ funcionario.cpf }}</td>
-                    <div class="modal" id="modal{{ funcjionario.id }}">
+                    <td class="has-text-centered is-flex-wrap-nowrap is-justify-content-center">
+                        <a href="{%url 'funcionario_editar' funcionario.pk %}">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                        </a>
+                        <a href="{%url 'funcionario_apagar' funcionario.pk %}">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                        </a>
+                    </td>
+                    <div class="modal" id="modal{{ funcionario.id }}">
                         <div class="modal-background"></div>
                         <div class="modal-card">
                             <header class="modal-card-head">

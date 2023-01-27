@@ -1,7 +1,9 @@
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator
 
 from home.utils import HtmlToPdf
+from vaga.forms import VagaModelForm
 from vaga.models import Vaga
 
 class VagasView(ListView):
@@ -15,7 +17,7 @@ class VagasView(ListView):
             qs = qs.filter(numero__icontais=buscar)
 
 
-        paginator = Paginator(qs, 1)
+        paginator = Paginator(qs, 10)
         listagem = paginator.get_page(self.request.GET.get('page'))
         return listagem
 
@@ -25,3 +27,20 @@ class VagasView(ListView):
             return html_pdf.response
         else:
             return super(VagasView, self).get(*args, **kwargs)
+
+class VagaAddView(CreateView):
+    form_class = VagaModelForm
+    model = Vaga
+    template_name = 'movimentacao_form.html'
+    success_url = reverse_lazy('vagas')
+
+class VagaUpDateView(UpdateView):
+    form_class = VagaModelForm
+    model = Vaga
+    template_name = 'movimentacao_form.html'
+    success_url = reverse_lazy('vagas')
+
+class VagaDeleteView(DeleteView):
+    model = Vaga
+    template_name = 'movimentacao_apagar.html'
+    success_url = reverse_lazy('vagas')

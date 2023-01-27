@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+
+{% block head %}
+    {% include "head.html" %}
+{% endblock %}
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered has-text-weight-bold">Cadastro de Veiculos</h1>
+        </div>
+    </section>
+    <section class="section has-background-link-light">
+        {% if object_list %}
+        <div style="text-align: center;"><h1 class="subtitle is-size-4">Veiculos Cadastrados</h1></div>
+        <div class="table">
+            <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th class="has-text-centered">Marca</th>
+                        <th class="has-text-centered">Modelo</th>
+                        <th class="has-text-centered">Placa</th>
+                        <th class="has-text-centered">Cor</th>
+                        <th class="has-text-centered">Cliente</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movimentacao in object_list%}
+                    <tr>
+                        <td> {{veiculo.marca}} </td>
+                        <td> {{veiculo.modelo}} </td>
+                        <td> {{veiculo.placa}} </td>
+                        <td> {{veiculo.cor}} </td>
+                        <td> {{veiculo.cliente}} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <h2>Nao existem veiculos cadastrados</h2>
+        {% endif %}
+    </section>
+</body>
+</html>

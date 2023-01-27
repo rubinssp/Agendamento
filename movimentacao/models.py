@@ -20,11 +20,12 @@ class Movimentacao(models.Model):
                                     on_delete=models.CASCADE)
     situacao = models.CharField('Situacão', max_length=15, help_text="Situacão da vaga", choices=SITUACAO_OPCOES,
                                 default='L')
-
+    veiculo = models.ForeignKey('veiculo.placa', verbose_name='Placa', help_text='Placa do veículo',
+                               on_delete=models.CASCADE)
     class Meta:
         verbose_name = 'Movimentacao'
         verbose_name_plural = 'Movimentacoes'
         ordering = ['entrada', ]
 
     def __str__(self):
-        return f'Vaga: {self.vaga} - Funncionário: {self.funcionario}'
+        return f'Vaga: {self.vaga} - Funcionário: {self.funcionario}'

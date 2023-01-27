@@ -32,8 +32,8 @@
                 <thead>
                 <tr>
                     <th class="has-text-centered">Numero</th>
-                    <th class="has-text-centered">Status</th>
                     <th class="has-text-centered">Preço</th>
+                    <th class="has-text-centered" style="width: 100px;">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,9 +42,20 @@
                     <td><a href="" data-toggle="modal" class="modal-target"
                            data-bulma-modal="modal{{vaga.id}}" id="modal{{vaga.id}}">
                         {{ vaga.numero }} </a></td>
-                    <td> {{ vaga.situacao}}</td>
                     <td> {{ vaga.preco }}</td>
-                    <div class="modal" id="modal{{ clientepf.id }}">
+                    <td class="has-text-centered is-flex-wrap-nowrap is-justify-content-center">
+                        <a href="{% url 'vaga_editar' vaga.pk %}">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                        </a>
+                        <a href="{%url 'vaga_apagar' vaga.pk %}">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                        </a>
+                    </td>
+                    <div class="modal" id="modal{{ vaga.id }}">
                         <div class="modal-background"></div>
                         <div class="modal-card">
                             <header class="modal-card-head">

@@ -3,7 +3,8 @@
 {% block content %}
 <section class="section has-background-link-light">
     <div class="container">
-        <form action="" method="GET">
+        <form id="form ListaVeiculos" action="" method="GET">
+            <input type="hidden" name="imprimir" id="imprimir" value="">
             <div class="field is-grouped is-flex is align-items-center is-flex-wrap-wrap">
                 <label class="label p-2 mt-2">Modelo do veículo:</label>
                 <div class="control is-expanded">
@@ -11,10 +12,17 @@
                            placeholder="Digite o modelo do veiculo">
                 </div>
                 <div class="control">
-                    <button type="submit " class="button is-link">
+                    <button type="button" class="button is-link" onclick="geraPdf('', 'formListaVeiculos');">
                         Buscar
                     </button>
                 </div>
+                {% if object_list %}
+                <div class="control">
+                    <button type="button" class="button is-link" onclick="geraPdf('pdf', 'formListaVeiculos');">
+                        Imprimir
+                    </button>
+                </div>
+                {% endif %}
             </div>
         </form>
         {% if object_list %}
@@ -28,6 +36,7 @@
                     <th class="has-text-centered">Cor</th>
                     <th class="has-text-centered">Placa</th>
                     <th class="has-text-centered">Cliente</th>
+                    <th class="has-text-centered" style="widht: 100px">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,6 +49,18 @@
                     <td> {{ veiculo.cor }}</td>
                     <td> {{ veiculo.placa }}</td>
                     <td> {{ veiculo.cliente }}</td>
+                    <td class="has-text-centered is-flex-wrap-nowrap is-justify-content-center">
+                        <a href="{%url 'veiculo_editar' veiculo.pk %}">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                        </a>
+                        <a href="{%url 'veiculo_apagar' veiculo.pk %}">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                        </a>
+                    </td>
                     <div class="modal" id="modal{{ veiculo.id }}">
                         <div class="modal-background"></div>
                         <div class="modal-card">

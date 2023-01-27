@@ -1,5 +1,8 @@
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator
+
+from .forms import ClientepfModelForm
 from .models import Clientepf
 from home.utils import HtmlToPdf
 
@@ -13,7 +16,7 @@ class ClientespfView(ListView):
         if buscar:
             qs = qs.filter(nome__icontains=buscar)
 
-        paginator = Paginator(qs, 1)
+        paginator = Paginator(qs, 10)
         listagem = paginator.get_page(self.request.GET.get('page'))
         return listagem
 
@@ -23,3 +26,20 @@ class ClientespfView(ListView):
             return html_pdf.response
         else:
             return super(ClientespfView, self).get(*args, **kwargs)
+
+class ClientepfAddView(CreateView):
+    form_class = ClientepfModelForm
+    model = Clientepf
+    template_name = 'clientepf_form.html'
+    success_url = reverse_lazy('clientespf')
+
+class ClientepfUpDateView(UpdateView):
+    form_class = ClientepfModelForm
+    model = Clientepf
+    template_name = 'clientepf_form.html'
+    success_url = reverse_lazy('clientespf')
+
+class ClientepfDeleteView(DeleteView):
+    model = Clientepf
+    template_name = 'clientepf_apagar.html'
+    success_url = reverse_lazy('clientespf')

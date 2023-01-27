@@ -18,7 +18,7 @@
             <thead>
             <tr>
                 <th class="has-text-centered">Nome</th>
-                <th class="has-text-centered">Endereço</th>
+                <th class="has-text-centered">Data de Nascimento</th>
                 <th class="has-text-centered">CPF</th>
             </tr>
             </thead>
@@ -26,7 +26,7 @@
             {% for clientepf in object_list%}
             <tr>
                 <td> {{ clientepf.nome }}</td>
-                <td> {{ clientepf.endereco }}</td>
+                <td> {{ clientepf.datanascimento }}</td>
                 <td> {{ clientepf.cpf }}</td>
             </tr>
             {% endfor %}

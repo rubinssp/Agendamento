@@ -32,8 +32,9 @@
                 <thead>
                 <tr>
                     <th class="has-text-centered">Nome</th>
-                    <th class="has-text-centered">Endereço</th>
+                    <th class="has-text-centered">Data de Nascimento</th>
                     <th class="has-text-centered">CPF</th>
+                    <th class="has-text-centered" style="widht: 100px;">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,8 +43,20 @@
                     <td><a href="" data-toggle="modal" class="modal-target"
                            data-bulma-modal="modal{{clientepf.id}}" id="modal{{clientepf.id}}">
                          {{ clientepf.nome }} </a></td>
-                    <td> {{ clientepf.endereco }}</td>
+                    <td> {{ clientepf.datanascimento }}</td>
                     <td> {{ clientepf.cpf }}</td>
+                    <td class="has-text--centered is-flex is-flex-wrap-nowrap is-justify-content-center">
+                        <a href="{% url 'clientepf_editar' clientepf.pk %}">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                        </a>
+                        <a href="{% url 'clientepf_apagar' clientepf.pk %}">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                        </a>
+                    </td>
                     <div class="modal" id="modal{{ clientepf.id }}">
                         <div class="modal-background"></div>
                         <div class="modal-card">
