@@ -24,7 +24,7 @@ class FuncionariosView(ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            return messages.info(self.request, "Não existem clientes cadastrados!")
+            return messages.info(self.request, "Não existem funcionários cadastrados!")
 
     def get(self, *args, **kwargs):
         if self.request.GET.get('imprimir') == 'pdf':
