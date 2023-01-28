@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator
@@ -17,9 +19,12 @@ class FuncionariosView(ListView):
         if buscar:
             qs = qs.filter(nome__icontains=buscar)
 
-        paginator = Paginator(qs, 10)
-        listagem = paginator.get_page(self.request.GET.get('page'))
-        return listagem
+        if qs.count() > 0:
+            paginator = Paginator(qs, 10)
+            listagem = paginator.get_page(self.request.GET.get('page'))
+            return listagem
+        else:
+            return messages.info(self.request, "Não existem clientes cadastrados!")
 
     def get(self, *args, **kwargs):
         if self.request.GET.get('imprimir') == 'pdf':
@@ -28,19 +33,21 @@ class FuncionariosView(ListView):
         else:
             return super(FuncionariosView, self).get(*args, **kwargs)
 
-class FuncionarioAddView(CreateView):
+class FuncionarioAddView(SuccessMessageMixin, CreateView):
     form_class = FuncionarioModelForm
     model = Funcionario
-    template_name = 'movimentacao_form.html'
+    template_name = 'funcionario_form.html'
     success_url = reverse_lazy('funcionarios')
+    success_message = 'Funcionario cadastrado com sucesso!'
 
-class FuncionarioUpDateView(UpdateView):
+class FuncionarioUpDateView(SuccessMessageMixin, UpdateView):
     form_class = FuncionarioModelForm
     model = Funcionario
-    template_name = 'movimentacao_form.html'
+    template_name = 'funcionario_form.html'
     success_url = reverse_lazy('funcionarios')
-
-class FuncionarioDeleteView(DeleteView):
+    success_message = 'Funcionario atualizado com sucesso!'
+class FuncionarioDeleteView(SuccessMessageMixin, DeleteView):
     model = Funcionario
-    template_name = 'movimentacao_apagar.html'
+    template_name = 'mfuncionario_apagar.html'
     success_url = reverse_lazy('funcionarios')
+    success_message = 'Funcionario excluído com sucesso!'

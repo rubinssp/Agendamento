@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator
@@ -16,9 +18,12 @@ class ClientespfView(ListView):
         if buscar:
             qs = qs.filter(nome__icontains=buscar)
 
-        paginator = Paginator(qs, 10)
-        listagem = paginator.get_page(self.request.GET.get('page'))
-        return listagem
+        if qs.count() > 0:
+            paginator = Paginator(qs, 10)
+            listagem = paginator.get_page(self.request.GET.get('page'))
+            return listagem
+        else:
+            return messages.info(self.request, "Não existem clientes cadastrados!")
 
     def get(self, *args, **kwargs):
         if self.request.GET.get('imprimir') == 'pdf':
@@ -27,19 +32,20 @@ class ClientespfView(ListView):
         else:
             return super(ClientespfView, self).get(*args, **kwargs)
 
-class ClientepfAddView(CreateView):
+class ClientepfAddView(SuccessMessageMixin, CreateView):
     form_class = ClientepfModelForm
     model = Clientepf
     template_name = 'clientepf_form.html'
     success_url = reverse_lazy('clientespf')
-
-class ClientepfUpDateView(UpdateView):
+    success_message = 'Cliente cadastrado com sucesso!'
+class ClientepfUpDateView(SuccessMessageMixin, UpdateView):
     form_class = ClientepfModelForm
     model = Clientepf
     template_name = 'clientepf_form.html'
     success_url = reverse_lazy('clientespf')
-
-class ClientepfDeleteView(DeleteView):
+    success_message = 'Cliente alterado com sucesso!'
+class ClientepfDeleteView(SuccessMessageMixin, DeleteView):
     model = Clientepf
     template_name = 'clientepf_apagar.html'
     success_url = reverse_lazy('clientespf')
+    success_message = 'Cliente excluido com sucesso!'

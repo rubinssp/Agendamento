@@ -3,7 +3,7 @@
 {% block content %}
 <section class="section has-background-link-light">
     <div class="container">
-       <form id="form ListaMovimentacoes" action="" method="GET">
+        <form id="form ListaMovimentacoes" action="" method="GET">
             <input type="hidden" name="imprimir" id="imprimir" value="">
             <div class="field is-grouped is-flex is-align-items center is-flex-wrap-wrap">
                 <label class="label p-2 mt-2">{{ form.funcionario.label }}</label>
@@ -18,18 +18,16 @@
                 <div class="control is-expanded">
                     {{ form.situacao }}
                 </div>
-                  <div class="control">
+                <div class="control">
                     <button type="button" class="button is-link" onclick="geraPdf('', 'formListaMovimentacoes');">
                         Buscar
                     </button>
                 </div>
-                {% if object_list %}
                 <div class="control">
                     <button type="button" class="button is-link" onclick="geraPdf('pdf', 'formListaMovimentacoes');">
                         Imprimir
                     </button>
                 </div>
-                {% endif %}
             </div>
         </form>
         {% if object_list %}
@@ -66,7 +64,7 @@
         <h2>Nao existem movimentacoes cadastradas!</h2>
         {% endif %}
     </div>
-    <div class="mt-3" style="text-align: center">
+<div class="mt-3" style="text-align: center">
         <span class="step-links">
             {% if object_list.has_previous %}
                 <a href="?page={{ object_list.previous_page_number }}">Anterior</a>

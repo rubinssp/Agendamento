@@ -11,7 +11,7 @@
                     <input class="input" type="text" name="buscar" value="{{ request.GET.buscar }}"
                            placeholder="Digite o numero da vaga">
                 </div>
-                 <div class="control">
+                <div class="control">
                     <button type="button" class="button is-link" onclick="geraPdf('', 'formListaVagas');">
                         Buscar
                     </button>
@@ -37,14 +37,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for vagas in object_list %}
+                {% for vaga in object_list %}
                 <tr>
                     <td><a href="" data-toggle="modal" class="modal-target"
                            data-bulma-modal="modal{{vaga.id}}" id="modal{{vaga.id}}">
                         {{ vaga.numero }} </a></td>
                     <td> {{ vaga.preco }}</td>
                     <td class="has-text-centered is-flex-wrap-nowrap is-justify-content-center">
-                        <a href="{% url 'vaga_editar' vaga.pk %}">
+                        <a href="{%url 'vaga_editar' vaga.pk %}">
                             <span class="icon">
                                 <i class="fas fa-edit"></i>
                             </span>

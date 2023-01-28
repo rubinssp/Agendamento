@@ -15,3 +15,9 @@ class FuncionarioModelForm(forms.ModelForm):
             'foto': forms.FileInput(attrs={'class': 'input', 'type': 'file'}),
 
         }
+
+        error_messages = {
+            'nome': {'required': 'O nome do funcionario é um campo obrigatório'},
+            'cpf': {'required': 'O CPF do funcionario é um campo obrigatório'},
+
+        }

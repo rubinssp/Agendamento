@@ -4,19 +4,24 @@
     <div class="container">
         <div class="columns is-mobile">
             <div class="column is-half is-offset-one-quarter">
-                <h3 class="title is-size-3">Dados da Vaga</h3>
-                <p class="p-2 mt-2"><strong>Número: </strong> {{ object.numero}} </p>
-                  <p class="p-2 mt-2"><strong>Preço: </strong> {{ object.precof }} </p>
-                    {% csrf_token %}
-                    <p> Confirma a exclusão da vaga "{{ object }}"? </p>
-                    <br/>
-                    <button class="button is-link is-primary" type="submit">Apagar</button>
-                    <button class="button is-danger is-pulled-right" type="reset">
-                        <a href="{% url 'vagas' %}">Cancelar</a>
-                    </button>
+                <h3 class="title is-size-3">Dados da Movimentação</h3>
+                <p class="p-2 mt-2"><strong>Entrada: </strong> {{ object.entrada}} </p>
+                <p class="p-2 mt-2"><strong>Preço: </strong> {{ object.saida }} </p>
+                <p class="p-2 mt-2"><strong>Valor Pago: </strong> {{ object.valor_pago}} </p>
+                <p class="p-2 mt-2"><strong>Vaga: </strong> {{ object.vaga}} </p>
+                <p class="p-2 mt-2"><strong>Funcionario: </strong> {{ object.funcionario}} </p>
+                <p class="p-2 mt-2"><strong>Situação: </strong> {{ object.situacao}} </p>
+
+                {% csrf_token %}
+                <p> Confirma a exclusão da movimentação"{{ object }}"? </p>
+                <br/>
+                <button class="button is-link is-primary" type="submit">Apagar</button>
+                <button class="button is-danger is-pulled-right" type="reset">
+                    <a href="{% url 'movimentacoes' %}">Cancelar</a>
+                </button>
                 </form>
             </div>
-            </div>
         </div>
+    </div>
 </section>
 {% endblock %}

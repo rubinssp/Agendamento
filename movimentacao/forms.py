@@ -1,7 +1,7 @@
 from django import forms
 
+from movimentacao.models import Movimentacao
 from vaga.models import Vaga
-from veiculo.models import Veiculo
 from funcionario.models import Funcionario
 class MovimentacaoListForm(forms.Form):
     SITUACAO_OPCOES = (
@@ -19,19 +19,17 @@ class MovimentacaoListForm(forms.Form):
     situacao = forms.ChoiceField(label='Situação:', widget=forms.Select(
     attrs={'class': 'select is-fullwidth'}), choices=SITUACAO_OPCOES, required=False)
 
-    veiculo = forms.ModelMultipleChoiceField(label='Veículo:', widget=forms.Select(
-    attrs={'class': 'select is-fullwidth'}), queryset=Veiculo.objects.all(), required=False)
 
 
-class AtendimentoModelForm(forms.ModelForm):
+class MovimentacaoModelForm(forms.ModelForm):
     class Meta:
-        model = Atendimento
-        fields = ['horario', 'cliente', 'funcionario', 'servico', 'situacao']
+        model = Movimentacao
+        fields = ['saida', 'valor_pago', 'tempo', 'vaga', 'funcionario', 'situacao']
         widgets = {
-            'horario': forms.DateTimeInput(
-                attrs={'class': 'input', 'placeholder': 'Digite a data e hora do agendamento'}),
-            'cliente': forms.Select(attrs={'class': 'input', 'placeholder': 'Selecione o nome do cliente'}),
-            'funcionario': forms.Select(attrs={'class': 'input', 'placeholder': 'Selecione o nome do funcionário'}),
-            'servico': forms.Select(attrs={'class': 'input', 'placeholder': 'Selecione o nome do serviço'}),
-            'situacao': forms.Select(attrs={'class': 'input', 'placeholder': 'Selecione a situação do atendimento'}),
+            'saida': forms.TimeInput(format='%H:%M'),
+            'valor_pago': forms.NumberInput(attrs={'class': 'input', 'placeholder': 'Digite o valor pago'}),
+            'tempo': forms.NumberInput(attrs={'class': 'input', 'placeholder': 'Digite o tempo de permanência'}),
+            'vaga': forms.Select(attrs={'class': 'input', 'placeholder': 'Selecione a vaga utilizada'}),
+            'funcionario': forms.Select(attrs={'class': 'input', 'placeholder': 'Selecione o funcionário responsável'}),
+            'situacao': forms.Select(attrs={'class': 'input', 'placeholder': 'Selecione a situação'}),
         }

@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="dropdown-menu" id="dropdown-menu-agendamento" role="menu" style="z-index: 1000;">
                                     <div class="dropdown-content">
-                                        <a href="#" class="dropdown-item">
+                                        <a href="{% url 'movimentacao_adicionar' %}" class="dropdown-item">
                                             Novo
                                         </a>
                                         <a href="{% url 'movimentacoes' %}" class="dropdown-item">
@@ -146,6 +146,9 @@
                 </nav>
             </div>
         </section>
+
+        {% include "messages.html" %}
+
         {% block content %} {% endblock %}
 
         {% block footer %}

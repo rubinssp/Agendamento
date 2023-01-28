@@ -1,7 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator
-
 from home.utils import HtmlToPdf
 from vaga.forms import VagaModelForm
 from vaga.models import Vaga
@@ -31,16 +30,16 @@ class VagasView(ListView):
 class VagaAddView(CreateView):
     form_class = VagaModelForm
     model = Vaga
-    template_name = 'movimentacao_form.html'
+    template_name = 'vaga_form.html'
     success_url = reverse_lazy('vagas')
 
 class VagaUpDateView(UpdateView):
     form_class = VagaModelForm
     model = Vaga
-    template_name = 'movimentacao_form.html'
+    template_name = 'vaga_form.html'
     success_url = reverse_lazy('vagas')
 
 class VagaDeleteView(DeleteView):
     model = Vaga
-    template_name = 'movimentacao_apagar.html'
+    template_name = 'vaga_apagar.html'
     success_url = reverse_lazy('vagas')
