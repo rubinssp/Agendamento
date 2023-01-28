@@ -18,6 +18,7 @@ class FuncionarioModelForm(forms.ModelForm):
 
         error_messages = {
             'nome': {'required': 'O nome do funcionario é um campo obrigatório'},
-            'cpf': {'required': 'O CPF do funcionario é um campo obrigatório'},
+            'cpf': {'required': 'O CPF do funcionário é um campo obrigatório',
+                    'unique': 'CPF já cadastrado'},
 
         }

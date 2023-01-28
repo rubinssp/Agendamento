@@ -45,10 +45,12 @@ class MovimentacoesView(ListView):
 
         return qs
 
-
-        paginator = Paginator(qs, 10)
-        listagem = paginator.get_page(self.request.GET.get('page'))
-        return listagem
+        if qs.count() > 0:
+            paginator = Paginator(qs, 10)
+            listagem = paginator.get_page(self.request.GET.get('page'))
+            return listagem
+        else:
+            return messages.info(self.request, "Não existem movimentações cadastradas!")
 
     def get(self, *args, **kwargs):
         if self.request.GET.get('imprimir') == 'pdf':
@@ -62,7 +64,7 @@ class MovimentacaoAddView(SuccessMessageMixin, CreateView):
     model = Movimentacao
     template_name = 'movimentacao_form.html'
     success_url = reverse_lazy('movimentacoes')
-    sucess_message = "Veículo estacionado com sucesso!"
+    sucess_message = "Estacionado com sucesso!"
     def post(self, request, *args, **kwargs):
         form = MovimentacaoListForm(self.request.POST)
         if form.is_valid():
@@ -77,13 +79,15 @@ class MovimentacaoAddView(SuccessMessageMixin, CreateView):
                                                         ' Impossível estacionar outro veículo')
         return super(MovimentacaoAddView, self).post(request, *args, **kwargs)
 
-class MovimentacaoUpDateView(UpdateView):
+class MovimentacaoUpDateView(SuccessMessageMixin, UpdateView):
     form_class = MovimentacaoModelForm
     model = Movimentacao
     template_name = 'movimentacao_form.html'
     success_url = reverse_lazy('movimentacoes')
+    sucess_message = "Movimentaçao atualizada com sucesso!"
 
-class MovimentacaoDeleteView(DeleteView):
+class MovimentacaoDeleteView(SuccessMessageMixin, DeleteView):
     model = Movimentacao
     template_name = 'movimentacao_apagar.html'
     success_url = reverse_lazy('movimentacoes')
+    sucess_message = "Movimentação excluída com sucesso!"

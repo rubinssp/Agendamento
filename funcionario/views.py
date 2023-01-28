@@ -48,6 +48,6 @@ class FuncionarioUpDateView(SuccessMessageMixin, UpdateView):
     success_message = 'Funcionario atualizado com sucesso!'
 class FuncionarioDeleteView(SuccessMessageMixin, DeleteView):
     model = Funcionario
-    template_name = 'mfuncionario_apagar.html'
+    template_name = 'funcionario_apagar.html'
     success_url = reverse_lazy('funcionarios')
     success_message = 'Funcionario excluído com sucesso!'

@@ -20,6 +20,7 @@ class ClientepfModelForm(forms.ModelForm):
         error_messages = {
             'nome': {'required': 'O nome do cliente é um campo obrigatório'},
             'datanascimento': {'required': 'A data de nascimento do cliente é um campo obrigatório'},
-            'cpf': {'required': 'O CPF do cliente é um campo obrigatório'},
+            'cpf': {'required': 'O CPF do cliente é um campo obrigatório',
+                    'unique': 'CPF já cadastrado'},
 
         }

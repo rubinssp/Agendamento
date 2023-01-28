@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator
@@ -16,9 +18,12 @@ class VeiculosView(ListView):
         if buscar:
             qs = qs.filter(modelo__icontains=buscar)
 
-        paginator = Paginator(qs, 10)
-        listagem = paginator.get_page(self.request.GET.get('page'))
-        return listagem
+        if qs.count() > 0:
+            paginator = Paginator(qs, 10)
+            listagem = paginator.get_page(self.request.GET.get('page'))
+            return listagem
+        else:
+            return messages.info(self.request, "Não existem vagas cadastradas!")
 
     def get(self, *args, **kwargs):
         if self.request.GET.get('imprimir') == 'pdf':
@@ -27,19 +32,22 @@ class VeiculosView(ListView):
         else:
             return super(VeiculosView, self).get(*args, **kwargs)
 
-class VeiculoAddView(CreateView):
+class VeiculoAddView(SuccessMessageMixin, CreateView):
     form_class = VeiculoModelForm
     model = Veiculo
     template_name = 'veiculo_form.html'
     success_url = reverse_lazy('veiculos')
+    success_message = "Veículo adicionado com sucesso!"
 
-class VeiculoUpDateView(UpdateView):
+class VeiculoUpDateView(SuccessMessageMixin,UpdateView):
     form_class = VeiculoModelForm
     model = Veiculo
     template_name = 'veiculo_form.html'
     success_url = reverse_lazy('veiculos')
+    success_message = "Veículo alterado com sucesso!"
 
-class VeiculoDeleteView(DeleteView):
+class VeiculoDeleteView(SuccessMessageMixin,DeleteView):
     model = Veiculo
     template_name = 'veiculo_apagar.html'
     success_url = reverse_lazy('veiculos')
+    success_message = "Veículo excluído com sucesso!"

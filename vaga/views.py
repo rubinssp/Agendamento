@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator
@@ -15,11 +17,12 @@ class VagasView(ListView):
         if buscar:
             qs = qs.filter(numero__icontais=buscar)
 
-
-        paginator = Paginator(qs, 10)
-        listagem = paginator.get_page(self.request.GET.get('page'))
-        return listagem
-
+        if qs.count() > 0:
+            paginator = Paginator(qs, 10)
+            listagem = paginator.get_page(self.request.GET.get('page'))
+            return listagem
+        else:
+            return messages.info(self.request, "Não existem vagas cadastradas!")
     def get(self, *args, **kwargs):
         if self.request.GET.get('imprimir') == 'pdf':
             html_pdf = HtmlToPdf(arquivo='vagas_pdf', qs=self.get_queryset())
@@ -27,19 +30,22 @@ class VagasView(ListView):
         else:
             return super(VagasView, self).get(*args, **kwargs)
 
-class VagaAddView(CreateView):
+class VagaAddView(SuccessMessageMixin, CreateView):
     form_class = VagaModelForm
     model = Vaga
     template_name = 'vaga_form.html'
     success_url = reverse_lazy('vagas')
+    success_message = "Vaga adicionada com sucesso!"
 
-class VagaUpDateView(UpdateView):
+class VagaUpDateView(SuccessMessageMixin,UpdateView):
     form_class = VagaModelForm
     model = Vaga
     template_name = 'vaga_form.html'
     success_url = reverse_lazy('vagas')
+    success_message = "Vaga alterada com sucesso!"
 
-class VagaDeleteView(DeleteView):
+class VagaDeleteView(SuccessMessageMixin,DeleteView):
     model = Vaga
     template_name = 'vaga_apagar.html'
     success_url = reverse_lazy('vagas')
+    success_message = "Vaga excluída com sucesso!"

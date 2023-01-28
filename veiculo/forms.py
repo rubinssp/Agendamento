@@ -19,3 +19,11 @@ class VeiculoModelForm(forms.ModelForm):
             'cliente': forms.Select(
                attrs={'class': 'input', 'placeholder': 'Selecione o nome do cliente'}),
         }
+
+        error_messages = {
+            'marca': {'required': 'A marca é um campo obrigatório'},
+            'modelo': {'required': 'O modele é um campo obrigatório'},
+            'cor': {'required': 'A cor é um campo obrigatório'},
+            'placa': {'required': 'A placa é um campo obrigatório',
+                      'unique': 'Placa já cadastrada'},
+        }

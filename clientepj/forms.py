@@ -20,6 +20,7 @@ class ClientepjModelForm(forms.ModelForm):
         error_messages = {
             'nome': {'required': 'O nome do cliente é um campo obrigatório'},
             'datanascimento': {'required': 'A data de nascimento do cliente é um campo obrigatório'},
-            'cnpj': {'required': 'O CNPJ do cliente é um campo obrigatório'},
+            'cnpj': {'required': 'O CNPJ do cliente é um campo obrigatório',
+                    'unique': 'CNPJ já cadastrado'},
 
         }
