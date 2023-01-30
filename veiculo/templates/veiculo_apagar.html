@@ -17,7 +17,7 @@
                         {{ pessoa }},
                     {% endif %}
                 {% endfor %}</p>
-
+                <form method="POST">
                     {% csrf_token %}
                     <p> Confirma a exclusão do veículo "{{ object }}"? </p>
                     <br/>
